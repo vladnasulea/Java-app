@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,10 +20,10 @@ public class CarController{
 	private List<Car> cars = new ArrayList<Car>();
 
 	CarController(){
-		Car p1 = new Car(500,2005,"Fiat");
-		Car p2 = new Car(200,2006,"Skoda");
-		Car p3 = new Car(124,2011,"Ford");
-		Car p4 = new Car(1000,2015,"Peugeot");
+		Car p1 = new Car(1,500,2005,"Fiat");
+		Car p2 = new Car(2,200,2006,"Skoda");
+		Car p3 = new Car(3,124,2011,"Ford");
+		Car p4 = new Car(4,1000,2015,"Peugeot");
 
 		cars.add(p1);
 		cars.add(p2);
@@ -36,10 +37,10 @@ public class CarController{
 	}
 
 	
-	@RequestMapping(value="/car/{serialNumber}",method = RequestMethod.GET)
-	public ResponseEntity show(@PathVariable("serialNumber") int serialNumber){
+	@RequestMapping(value="/car/{id}",method = RequestMethod.GET)
+	public ResponseEntity show(@PathVariable("id") int id){
 		for(Car p : this.cars){
-			if(p.getSerialNumber() == serialNumber){
+			if(p.getId() == id){
 				return new ResponseEntity<Car>(p,new HttpHeaders(),HttpStatus.OK);
 			}
 		}
@@ -50,7 +51,7 @@ public class CarController{
 	@RequestMapping(value="/car/", method = RequestMethod.POST)
 	  public ResponseEntity create() {
 
-	Car p = new Car(172,2011,"Mazda");
+	Car p = new Car(4,172,2011,"Mazda");
 	 	this.cars.add(p);
 	        return new ResponseEntity<Car>(p, new HttpHeaders(), HttpStatus.OK);
 	    
@@ -58,10 +59,10 @@ public class CarController{
 	}
 
 
-	@RequestMapping(value="/car/{serialNumber}", method = RequestMethod.PUT)
-	  public ResponseEntity update(@PathVariable("serialNumber") int serialNumber) {
+	@RequestMapping(value="/car/{id}", method = RequestMethod.PUT)
+	  public ResponseEntity update(@PathVariable("id") int id) {
 	    for(Car p : this.cars) { 
-	      if(p.getSerialNumber() == serialNumber) { p.setBrand("Audi");
+	      if(p.getId() == id) { p.setBrand("Audi");
 	        return new ResponseEntity<Car>(p, new HttpHeaders(), HttpStatus.OK);
 	      	}
 	    }
@@ -71,10 +72,10 @@ public class CarController{
 
 
 	
-	@RequestMapping(value="/car/{serialNumber}",method = RequestMethod.DELETE)
-	public ResponseEntity remove(@PathVariable("serialNumber") int serialNumber){
+	@RequestMapping(value="/car/{id}",method = RequestMethod.DELETE)
+	public ResponseEntity remove(@PathVariable("id") int id){
 		for(Car p : this.cars){
-			if(p.getSerialNumber() == serialNumber){
+			if(p.getId() == id){
 				this.cars.remove(p);
 				return new ResponseEntity<String>(null,new HttpHeaders(),HttpStatus.NO_CONTENT);
 			}

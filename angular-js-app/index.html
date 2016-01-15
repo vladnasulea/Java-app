@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html ng-app="blog">
 <head>
-  <title>My application</title>
+  <title>Application</title>
   <link rel="stylesheet" media="all" href="css/bootstrap.min.css">
   <link rel="stylesheet" media="all" href="css/custom.css">
 </head>
@@ -22,9 +22,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#car">Car</a></li>
-            <li><a href="#client">Client</a></li>
-            <li><a href="#person">Persoana</a></li>
+            <li><a href="#Car1">Car</a></li>
+            <li><a href="#Client1">Client</a></li>
+			<li><a href="#Product1">Product </a> </li>
           </ul>
         </div>
       </div>
@@ -35,30 +35,31 @@
 
   <div class="container">
     <div ng-controller="HomeController">
-      <h1>Tema 4 AWJ</h1>
-      
+      <h1>{{ helloWorld }}</h1>
+     
     </div>
   </div>
 
   <hr/>
 
   <!-- /resources1 -->
-  <div class="container">
-    <h1 id="car">Car</h1>
-    <h2 >List of cars</h2>
-    <table align="center" class="table table-bordered">
-      <tr>
+  <div class="container" ng-controller="HomeController">
+    <h1 class="resource-title" id="Car1">Car</h1>
+
+    <table class="table table-bordered table-hover">
+      <tr class="info">
+        <th>Id</th>
         <th>Brand</th>
-        <th>Serial Number</th>
+		<th>Serial Number</th>
         <th>Year</th>
-        
-        <th style="width:230px;">Options</th>
+   
+        <th style="width:210px;">Options</th>
       </tr>
-      <tr>
-        <td>Fiat</td>
-        <td>500</td>
-        <td>2005</td>
-        
+	    <tr ng-repeat="item in cars.data" data-id="{{ item.id }}">
+        <td>{{ item.id }}</td>
+         <td>{{ item.brand }}</td>
+		<td>{{ item.serialNumber }}</td>
+		<td> {{item.year}} </td>
         <td>
           <a href="">
             <span class="label label-success">
@@ -66,146 +67,72 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </span>
           </a>
-          <a href="">
-            <span class="label label-primary">
+          <button ng-click="setUpdateCar(item)" class="btn btn-info btn-xs">
               Edit
               <span class="glyphicon glyphicon-edit"></span>
-            </span>
           </a>
-          <a href="">
-            <span class="label label-danger">
+          <button ng-click="deleteCar(item.id)" class="btn btn-danger btn-xs">
               Remove
               <span class="glyphicon glyphicon-remove"></span>
-            </span>
+            </button>
           </a>
         </td>
       </tr>
-      <tr>
-        <td>Skoda</td>
-        <td>200</td>
-        <td>2006</td>
-        
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Ford</td>
-        <td>124</td>
-        <td>2011</td>
-        
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Peugeot</td>
-        <td>1000</td>
-        <td>2015</td>
-        
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
+      
+    
     </table>
 
     <div class="row">
       <div class="col-md-3">
-        <h2>Edit a car</h2>
+        <h2>Edit car</h2>
         <form action="" method="">
-          <div class="form-group">
-            <label for="attribute1">Brand</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Brand">
-          </div>
-          <div class="form-group">
-            <label for="attribute2">Serial Number</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Serial Number">
-          </div>
-          <div class="form-group">
-            <label for="attribute3">Year</label>
-            <input type="text" class="form-control" id="attribute3" placeholder="Year">
-          </div>
           
+          <div class="form-group">
+            <label for="attribute2">Brand</label>
+            <input type="text" class="form-control" id="nume_magazin" placeholder="Brand">
+          </div>
+          <div class="form-group">
+            <label for="attribute3">Serial Number</label>
+            <input type="text" class="form-control" id="adresa_magazin" placeholder="Serial Number">
+          </div>
+		  <div class="form-group">
+            <label for="attribute3">Year</label>
+            <input type="text" class="form-control" id="adresa_magazin" placeholder="Year">
+          </div>
+        
           <button type="submit" class="btn btn-info">Save</button>
         </form>
       </div>
 
 
       <div class="col-md-3 col-md-offset-6">
-        <h2>Add a car</h2>
+        <h2>Add car</h2>
         <form action="" method="">
-          <div class="form-group">
-            <label for="attribute1">Brand</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Brand">
+        
+		  <div class="form-group">
+            <label for="attribute2">Id</label>
+            <input type="text" class="form-control" id="attribute2" placeholder="Id" ng-model="car.id">
           </div>
           <div class="form-group">
-            <label for="attribute2">Serial Number</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Serial Number">
+            <label for="attribute2">Brand</label>
+            <input type="text" class="form-control" id="attribute2" placeholder="Brand" ng-model="car.brand">
           </div>
           <div class="form-group">
+            <label for="attribute3">Serial Number</label>
+            <input type="text" class="form-control" id="attribute3" placeholder="Serial Number" ng-model="car.serialNumber">
+          </div>
+		   <div class="form-group">
             <label for="attribute3">Year</label>
-            <input type="text" class="form-control" id="attribute3" placeholder="Year">
+            <input type="text" class="form-control" id="attribute3" placeholder="Year" ng-model="car.year">
           </div>
-          
-          <button type="submit" class="btn btn-success">Add</button>
+          <button ng-click="addCar(car)" type="submit" class="btn btn-success">Add</button>
         </form>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <h2>Show a car</h2>
+        <h2>Show car</h2>
       </div>
       <div class="col-md-2">
         <img src="http://momentcar.com/images/dodge-charger-1969-3.jpg" class="img-thumbnail"/>
@@ -217,20 +144,23 @@
   <hr/>
 
   <!-- /resources2-->
-  <div class="container">
-    <h1 id="client">Client</h1>
-    <h2>List of clients</h2>
-    <table class="table table-bordered">
-      <tr>
+  <div class="container" ng-controller="HomeController">
+    <h1 class="resource-title" id="Client1">Client</h1>
+
+    <table class="table table-bordered table-hover">
+      <tr class="info">
+        <th>Id</th>
         <th>Name</th>
-        <th>Client Code</th>
+		<th>Client Code</th>
         <th>Billing Code</th>
-        <th style="width:230px;">Options</th>
+   
+        <th style="width:210px;">Options</th>
       </tr>
-      <tr>
-        <td>Bill</td>
-        <td>10</td>
-        <td>15867</td>
+	    <tr ng-repeat="item in clients.data" data-id="{{ item.id }}">
+        <td>{{ item.id }}</td>
+         <td>{{ item.name }}</td>
+		<td>{{ item.clientCode }}</td>
+		<td> {{item.billingCode}} </td>
         <td>
           <a href="">
             <span class="label label-success">
@@ -238,141 +168,76 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </span>
           </a>
-          <a href="">
-            <span class="label label-primary">
+          <button ng-click="setUpdateCar(item)" class="btn btn-info btn-xs">
               Edit
               <span class="glyphicon glyphicon-edit"></span>
-            </span>
           </a>
-          <a href="">
-            <span class="label label-danger">
+          <button ng-click="deleteCar(item.id)" class="btn btn-danger btn-xs">
               Remove
               <span class="glyphicon glyphicon-remove"></span>
-            </span>
+            </button>
           </a>
         </td>
       </tr>
-      <tr>
-        <td>John</td>
-        <td>20</td>
-        <td>20035</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Ted</td>
-        <td>15</td>
-        <td>20356</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Thomas</td>
-        <td>12</td>
-        <td>20154</td>
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
+      
+    
     </table>
 
     <div class="row">
       <div class="col-md-3">
-        <h2>Edit a client</h2>
+        <h2>Edit client</h2>
         <form action="" method="">
+          
           <div class="form-group">
-            <label for="attribute1">Name</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Name">
+            <label for="attribute2">Id</label>
+            <input type="text" class="form-control" id="nume_magazin" placeholder="Id">
+          </div>
+		  <div class="form-group">
+            <label for="attribute2">Name</label>
+            <input type="text" class="form-control" id="nume_magazin" placeholder="Name">
           </div>
           <div class="form-group">
-            <label for="attribute2">Client Code</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Client Code">
+            <label for="attribute3">Client Code</label>
+            <input type="text" class="form-control" id="adresa_magazin" placeholder="Client Code">
           </div>
-          <div class="form-group">
-            <label for="attribute2">Billing Code</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Billing Code">
+		  <div class="form-group">
+            <label for="attribute3">Billing Code </label>
+            <input type="text" class="form-control" id="adresa_magazin" placeholder="Billing Code">
           </div>
+        
           <button type="submit" class="btn btn-info">Save</button>
         </form>
       </div>
 
 
       <div class="col-md-3 col-md-offset-6">
-        <h2>Add a client</h2>
+        <h2>Add client</h2>
         <form action="" method="">
-          <div class="form-group">
-            <label for="attribute1">Name</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Name">
+        
+		  <div class="form-group">
+            <label for="attribute2">Id</label>
+            <input type="text" class="form-control" id="attribute2" placeholder="Id" ng-model="client.id">
           </div>
           <div class="form-group">
-            <label for="attribute2">Client Code</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Client Code">
+            <label for="attribute2">Name</label>
+            <input type="text" class="form-control" id="attribute2" placeholder="Name" ng-model="client.name">
           </div>
           <div class="form-group">
-            <label for="attribute2">Billing Code</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Billing Code">
+            <label for="attribute3">Client Code</label>
+            <input type="text" class="form-control" id="attribute3" placeholder="Client Code" ng-model="client.clientCode">
           </div>
-          <button type="submit" class="btn btn-success">Add</button>
+		   <div class="form-group">
+            <label for="attribute3">Billing Code</label>
+            <input type="text" class="form-control" id="attribute3" placeholder="Billing Code" ng-model="client.billingCode">
+          </div>
+          <button ng-click="addClient(client)" type="submit" class="btn btn-success">Add</button>
         </form>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <h2>Show a client</h2>
+        <h2>Show client</h2>
       </div>
       <div class="col-md-2">
         <img src="http://www.avtrinity.com/wp-content/uploads/2010/09/New-Image-Private-Client.jpg" class="img-thumbnail"/>
@@ -382,22 +247,22 @@
   </div>
 
   <hr/>
+  <!-- resursa 3 !-->
+    <div class="container" ng-controller="HomeController">
+    <h1 class="resource-title" id="Product1">Product</h1>
 
-  <!-- /resources3-->
-  <div class="container">
-    <h1 id="person">Persoana</h1>
-    <h2>List of persons</h2>
-    <table class="table table-bordered">
-      <tr>
-        <th>Name</th>
+    <table class="table table-bordered table-hover">
+      <tr class="info">
         <th>Id</th>
-        
-        <th style="width:230px;">Options</th>
+        <th>Name</th>
+		<th>Quantity</th>
+   
+        <th style="width:210px;">Options</th>
       </tr>
-      <tr>
-        <td>John</td>
-        <td>1</td>
-        
+	    <tr ng-repeat="item in products.data" data-id="{{ item.id }}">
+        <td>{{ item.id }}</td>
+         <td>{{ item.name }}</td>
+		<td>{{ item.quantity}}</td>
         <td>
           <a href="">
             <span class="label label-success">
@@ -405,114 +270,73 @@
               <span class="glyphicon glyphicon-folder-open"></span>
             </span>
           </a>
-          <a href="">
-            <span class="label label-primary">
+          <button ng-click="setUpdateCar(item)" class="btn btn-info btn-xs">
               Edit
               <span class="glyphicon glyphicon-edit"></span>
-            </span>
           </a>
-          <a href="">
-            <span class="label label-danger">
+          <button ng-click="deleteProduct(item.id)" class="btn btn-danger btn-xs">
               Remove
               <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Paul</td>
-        <td>2</td>
-        
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Paul</td>
-        <td>3</td>
-        
-        <td>
-          <a href="">
-            <span class="label label-success">
-              Open
-              <span class="glyphicon glyphicon-folder-open"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-primary">
-              Edit
-              <span class="glyphicon glyphicon-edit"></span>
-            </span>
-          </a>
-          <a href="">
-            <span class="label label-danger">
-              Remove
-              <span class="glyphicon glyphicon-remove"></span>
-            </span>
+            </button>
           </a>
         </td>
       </tr>
       
+    
     </table>
 
     <div class="row">
       <div class="col-md-3">
-        <h2>Edit a person</h2>
+        <h2>Edit product</h2>
         <form action="" method="">
-          <div class="form-group">
-            <label for="attribute1">Name</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Name">
-          </div>
+          
           <div class="form-group">
             <label for="attribute2">Id</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Id">
+            <input type="text" class="form-control" id="nume_magazin" placeholder="Id">
           </div>
-          
+		  <div class="form-group">
+            <label for="attribute2">Name</label>
+            <input type="text" class="form-control" id="nume_magazin" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="attribute3">Quantity</label>
+            <input type="text" class="form-control" id="adresa_magazin" placeholder="Quantity">
+          </div>
+		  
+        
           <button type="submit" class="btn btn-info">Save</button>
         </form>
       </div>
 
 
       <div class="col-md-3 col-md-offset-6">
-        <h2>Add a person</h2>
+        <h2>Add product</h2>
         <form action="" method="">
-          <div class="form-group">
-            <label for="attribute1">Name</label>
-            <input type="text" class="form-control" id="attribute1" placeholder="Name">
-          </div>
-          <div class="form-group">
+        
+		  <div class="form-group">
             <label for="attribute2">Id</label>
-            <input type="text" class="form-control" id="attribute2" placeholder="Id">
+            <input type="text" class="form-control" id="attribute2" placeholder="Id" ng-model="product.id">
           </div>
-          
-          <button type="submit" class="btn btn-success">Add</button>
+          <div class="form-group">
+            <label for="attribute2">Name</label>
+            <input type="text" class="form-control" id="attribute2" placeholder="Name" ng-model="product.name">
+          </div>
+          <div class="form-group">
+            <label for="attribute3">Quantity</label>
+            <input type="text" class="form-control" id="attribute3" placeholder="Quantity" ng-model="product.quantity">
+          </div>
+		   
+          <button ng-click="addProduct(product)" type="submit" class="btn btn-success">Add</button>
         </form>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <h2>Show a person</h2>
+        <h2>Show product</h2>
       </div>
       <div class="col-md-2">
-        <img src="http://cliparts.co/cliparts/6Tr/yo7/6Tryo7RTK.jpg" class="img-thumbnail"/>
+        <img src="http://evusprisa0041.epam.com/content/epam/en/services/product-development/_jcr_content/promoarea_container/image.img.jpg/1369046427025.jpg" class="img-thumbnail"/>
       </div>
       
     </div>
@@ -533,6 +357,6 @@
   <script src="js/app.js"></script>
 </body>
 </html>
-
-     
+	 
+	 
 
